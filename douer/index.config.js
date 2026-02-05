@@ -57,6 +57,12 @@ var index_config_default = {
     url: "",
     channelUsername: ""
   },
+  pansou: {
+    url: "",
+    channels: "",
+    plugins: "",
+    cloudTypes: ""
+  },
   tgchannel: {},
   sites: {
     list: []
