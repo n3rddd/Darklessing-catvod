@@ -35,12 +35,40 @@ module.exports = __toCommonJS(index_config_exports);
 
 // src/util/network.js
 var import_os = __toESM(require("os"), 1);
-var findIPv4 = (IPInfos) => {
-  return IPInfos?.find((item) => item.family === "IPv4")?.address;
+var isIPv4 = (item) => {
+  if (!item)
+    return false;
+  const family = typeof item.family === "string" ? item.family : String(item.family || "");
+  return family === "IPv4" || family === "4";
+};
+var isPrivateIPv4 = (ip) => {
+  return /^192\.168\./.test(ip) || /^10\./.test(ip) || /^172\.(1[6-9]|2\d|3[0-1])\./.test(ip);
 };
 var getIPAddress = function() {
-  const interfaces = import_os.default.networkInterfaces();
-  return findIPv4(interfaces["en0"]) || findIPv4(interfaces["en1"]) || findIPv4(interfaces["en2"]) || "127.0.0.1";
+  const interfaces = import_os.default.networkInterfaces() || {};
+  const ips = [];
+  Object.values(interfaces).forEach((items) => {
+    if (!Array.isArray(items))
+      return;
+    items.forEach((item) => {
+      if (!isIPv4(item))
+        return;
+      if (item.internal)
+        return;
+      const ip = String(item.address || "").trim();
+      if (!ip || ip.startsWith("169.254."))
+        return;
+      ips.push(ip);
+    });
+  });
+  const privateIPs = ips.filter((ip) => isPrivateIPv4(ip));
+  const ordered = [
+    ...privateIPs.filter((ip) => /^192\.168\./.test(ip)),
+    ...privateIPs.filter((ip) => /^10\./.test(ip)),
+    ...privateIPs.filter((ip) => /^172\.(1[6-9]|2\d|3[0-1])\./.test(ip)),
+    ...ips.filter((ip) => !isPrivateIPv4(ip))
+  ];
+  return ordered[0] || "127.0.0.1";
 };
 
 // src/index.config.js
