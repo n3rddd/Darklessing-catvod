@@ -88,18 +88,15 @@ var index_config_default = {
   },
   live2vod: {
     sources: [
-      { name: "冰茶", url: "https://188766.xyz/itv", img: "" },
-      { name: "网络", url: "https://m.iill.top/Live.m3u", img: "" },
+      { name: "IPTV", url: "https://ipv.qq1000.site/IPTV.txt", img: "" },
       { name: "范明明", url: "https://cdn.jsdelivr.net/gh/fanmingming/live@refs/heads/main/tv/m3u/ipv6.m3u", img: "" },
-      { name: "Govin", url: "https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.m3u", img: "" },
+      { name: "电视", url: "https://tv.iill.top/m3u/Gather", img: "" },
+      { name: "网络", url: "https://m.iill.top/Live.m3u", img: "" },
+      { name: "体育", url: "https://tv.iill.top/m3u/Sport", img: "" },
       { name: "哔哩", url: "https://sub.ottiptv.cc/bililive.m3u", img: "" },
       { name: "虎牙", url: "https://sub.ottiptv.cc/huyayqk.m3u", img: "" },
       { name: "斗鱼", url: "https://sub.ottiptv.cc/douyuyqk.m3u", img: "" },
-      { name: "YY", url: "https://sub.ottiptv.cc/yylunbo.m3u", img: "" },
-      { name: "电视", url: "https://tv.iill.top/m3u/Gather", img: "" },
-      { name: "体育", url: "https://tv.iill.top/m3u/Sport", img: "" },
-      { name: "IPTV", url: "https://cdn.jsdelivr.net/gh/Kimentanm/aptv/m3u/iptv.m3u", img: "" },
-      { name: "IPTV²", url: "https://ipv.qq1000.site/IPTV.txt", img: "" }
+      { name: "YY", url: "https://sub.ottiptv.cc/yylunbo.m3u", img: "" }
     ],
     showMode: "groups",
     // groups: 按组分类显示, all: 单线路展示
